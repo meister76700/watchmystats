@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Thème sombre par défaut — identité WatchMyStats */
+    --background: 230 25% 6%;
+    --foreground: 220 20% 96%;
+    --surface: 228 22% 10%;
+    --surface-hover: 228 20% 13%;
+    --border: 228 15% 18%;
+    --muted: 228 15% 16%;
+    --muted-foreground: 220 10% 62%;
+    --accent: 255 85% 65%;
+    --accent-foreground: 0 0% 100%;
+    --accent-hover: 255 85% 72%;
+    --success: 152 60% 50%;
+    --danger: 0 80% 62%;
+    --warning: 38 92% 58%;
+  }
+
+  .light {
+    --background: 220 25% 98%;
+    --foreground: 228 25% 10%;
+    --surface: 0 0% 100%;
+    --surface-hover: 220 20% 96%;
+    --border: 220 15% 88%;
+    --muted: 220 20% 94%;
+    --muted-foreground: 220 10% 40%;
+    --accent: 255 75% 56%;
+    --accent-foreground: 0 0% 100%;
+    --accent-hover: 255 75% 50%;
+    --success: 152 55% 38%;
+    --danger: 0 70% 50%;
+    --warning: 38 85% 45%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    background-image:
+      radial-gradient(60% 50% at 50% -10%, hsl(var(--accent) / 0.12) 0%, transparent 70%);
+    background-attachment: fixed;
+  }
+}
+
+@layer components {
+  .card {
+    @apply bg-surface border border-border rounded-2xl;
+  }
+
+  .card-hover {
+    @apply transition-colors duration-200 hover:bg-surface-hover;
+  }
+
+  .stat-pill-up {
+    @apply text-success bg-success/10 border border-success/20 rounded-full px-2 py-0.5 text-xs font-medium;
+  }
+
+  .stat-pill-down {
+    @apply text-danger bg-danger/10 border border-danger/20 rounded-full px-2 py-0.5 text-xs font-medium;
+  }
+
+  .skeleton {
+    @apply bg-muted rounded-lg relative overflow-hidden;
+    background-image: linear-gradient(
+      90deg,
+      hsl(var(--muted)) 0%,
+      hsl(var(--surface-hover)) 50%,
+      hsl(var(--muted)) 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.6s linear infinite;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-border rounded-full;
+}
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
